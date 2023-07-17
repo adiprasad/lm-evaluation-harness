@@ -167,7 +167,7 @@ class AgiEvalTask(MultipleChoiceTask):
     def _process_doc(self, doc):
         # TODO: Process the documents into a dictionary with the following keys:
         return {
-            "query": doc['query'],  # The query prompt.
+            "query": self.format_prompt(doc['query']),  # The query prompt.
             "choices": doc['choices'],  # The list of choices.
             "gold": doc['gold'],  # The integer used to index into the correct element of `"choices"`.
         }
