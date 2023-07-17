@@ -157,6 +157,13 @@ class AgiEvalTask(MultipleChoiceTask):
             # named differently than the default `"test"`.
             return map(self._process_doc, self.dataset["test"])
 
+    def format_prompt(self, query):
+        prefix = (
+            "Below is an instruction that describes a task, paired with an input that provides further context. "
+            "Write a response that appropriately completes the request."
+        )
+        return f"{prefix}\n\n### Instruction:\n\n\n### Input:\n{query}\n\n### Response:\n"
+
     def _process_doc(self, doc):
         # TODO: Process the documents into a dictionary with the following keys:
         return {
@@ -212,5 +219,5 @@ def create_all_tasks():
     ]
     res = {}
     for task_name in supported_tasks:
-        res[f"agieval_{task_name.replace('-', '_')}"] = create_task_from_split(task_name)
+        res[f"alpaca_agieval_{task_name.replace('-', '_')}"] = create_task_from_split(task_name)
     return res
