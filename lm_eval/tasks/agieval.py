@@ -85,7 +85,7 @@ class AgiEvalTask(MultipleChoiceTask):
 
     def __init__(self, task_name, data_dir=None, cache_dir=None, download_mode=None):
         self.task_name = task_name
-        super.__init__(data_dir, cache_dir, download_mode)
+        super().__init__(data_dir, cache_dir, download_mode)
 
     def download(self, data_dir=None, cache_dir=None, download_mode=None):
         """Downloads and returns the task dataset.
@@ -155,7 +155,7 @@ class AgiEvalTask(MultipleChoiceTask):
             # TODO: Return the test document generator from `self.dataset`.
             # In most case you can leave this as is unless the dataset split is
             # named differently than the default `"test"`.
-            return map(self._process_doc, self.dataset[self.task_name])
+            return map(self._process_doc, self.dataset["test"])
 
     def _process_doc(self, doc):
         # TODO: Process the documents into a dictionary with the following keys:
