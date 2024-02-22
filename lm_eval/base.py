@@ -709,7 +709,7 @@ class Task(abc.ABC):
 
 class MultipleChoiceTask(Task):
     def doc_to_target(self, doc):
-        return " " + doc["choices"][doc["gold"]]
+        return " " + doc["choices"][doc["gold"][0]]
 
     def construct_requests(self, doc, ctx):
         lls = [
