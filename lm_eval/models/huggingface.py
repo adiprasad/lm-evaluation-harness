@@ -14,6 +14,8 @@ from accelerate import find_executable_batch_size
 from lm_eval import utils
 from lm_eval.base import BaseLM
 
+import ibm_models
+
 TokenSequence = Union[List[int], torch.LongTensor, torch.Tensor, BatchEncoding]
 
 _DeviceMapping = NewType("DeviceMapping", Mapping[str, Union[int, str, torch.device]])
