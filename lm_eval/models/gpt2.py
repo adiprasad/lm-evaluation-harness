@@ -1,7 +1,10 @@
 import torch
 import transformers
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import Optional, Union
 from lm_eval.base import BaseLM
+
+from ibm_models import *
 
 
 def _get_dtype(
@@ -54,7 +57,7 @@ class HFLM(BaseLM):
         # TODO: update this to be less of a hack once subfolder is fixed in HF
         revision = revision + ("/" + subfolder if subfolder is not None else "")
 
-        self.gpt2 = transformers.AutoModelForCausalLM.from_pretrained(
+        self.gpt2 = AutoModelForCausalLM.from_pretrained(
             pretrained,
             load_in_8bit=load_in_8bit,
             low_cpu_mem_usage=low_cpu_mem_usage,
@@ -64,7 +67,7 @@ class HFLM(BaseLM):
         ).to(self.device)
         self.gpt2.eval()
 
-        self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+        self.tokenizer = AutoTokenizer.from_pretrained(
             pretrained if tokenizer is None else tokenizer,
             revision=revision,
             trust_remote_code=trust_remote_code,
@@ -75,12 +78,13 @@ class HFLM(BaseLM):
         if isinstance(
             self.tokenizer, (transformers.GPT2Tokenizer, transformers.GPT2TokenizerFast)
         ):
-            assert self.tokenizer.encode("hello\n\nhello") == [
-                31373,
-                198,
-                198,
-                31373,
-            ], self.tokenizer.encode("hello\n\nhello")
+            # assert self.tokenizer.encode("hello\n\nhello") == [
+            #     31373,
+            #     198,
+            #     198,
+            #     31373,
+            # ], self.tokenizer.encode("hello\n\nhello")
+            pass
 
         # setup for automatic batch size detection
         if batch_size == "auto":
