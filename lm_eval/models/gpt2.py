@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import Optional, Union
 from lm_eval.base import BaseLM
 
-from ibm_models import *
+from dolomite_engine.hf_models import *
 
 
 def _get_dtype(
