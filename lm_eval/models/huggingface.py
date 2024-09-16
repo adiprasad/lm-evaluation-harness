@@ -15,6 +15,7 @@ from lm_eval import utils
 from lm_eval.base import BaseLM
 
 import dolomite_engine.hf_models
+from open_lm.hf import *
 
 TokenSequence = Union[List[int], torch.LongTensor, torch.Tensor, BatchEncoding]
 

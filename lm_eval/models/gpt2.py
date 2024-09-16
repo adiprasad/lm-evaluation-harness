@@ -5,6 +5,7 @@ from typing import Optional, Union
 from lm_eval.base import BaseLM
 
 from dolomite_engine.hf_models import *
+from open_lm.hf import *
 
 
 def _get_dtype(
